@@ -1,0 +1,76 @@
+<div class="page-title">
+    <div class="text">
+        <h3>Browse Property</h3>
+    </div>
+
+   <div class="buttons">
+    <button class="btn"><i class="fa-solid fa-money-bill-1-wave"></i> Make Offer</button>
+   </div>
+</div>
+
+<!-- search filter    -->
+<div class="search-title-filter">
+    <div class="title flex">
+         <div class="search">
+        <input type="text" class="textBox view-all" placeholder="Search...">
+    </div>
+
+          <div class="filter">
+        <select name="" id="" class="view-all">
+            <option value="">--Bulk Action--</option>
+            <option value="">Admin</option>
+            <option value="">Agents</option>
+            <option value="">Buyers</option>
+        </select>
+        <div class="filter-icon view-all"><i class="fa-solid fa-filter"></i><p>Filter</p></div>
+         <select name="" id="" class="view-all">
+            <option value="">--Select Role--</option>
+            <option value="">Admin</option>
+            <option value="">Agents</option>
+            <option value="">Buyers</option>
+        </select>
+    </div>
+    </div>
+</div>
+
+<!-- browser container  -->
+ <div class="browser-container">
+    @if (isLoading) {
+        <div class="loading">
+            <div class="loader"></div>
+        </div>
+    }@else if(properties.length == 0){
+        <p>No properties found</p>
+    }@else {
+            <div class="listed-properties">
+       <div class="box card" *ngFor="let item of properties">
+        <div class="box-img"> 
+            <img [src]="`${getImageUrl(item?.imageUrl)}`" alt={{item?.title}} class="img-box">
+                <div class="agent-details">
+                    <div class="box-img"><img [src]="`${getImageUrl(item?.agentImageUrl)}`" alt="" class="img-box"></div>
+                </div>
+        </div>
+        <div class="text-box">
+            <h3>{{item.title}}</h3>
+              <h2>{{item.price | currency: "R"}}</h2>
+            <p>{{item.address}}</p>
+             <ul>
+                    <li><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</li>
+                    <li><i class="fa-solid fa-sink"></i>{{item.bathrooms}}</li>
+                    <li><i class="fa-solid fa-ruler-combined"></i>{{item.size}}(m<sup>2</sup>)</li>
+                    <li><i class="fa-solid fa-eye"></i>407</li>
+                </ul>
+
+                <div class="buttons">
+                        <button class="btn view-all">View Details <i class="fa-solid fa-eye"></i></button>
+                        <button class="btn" (click)="openOfferPopup(item)">Buy Now<i class="fa-solid fa-money-bill-wave"></i></button>
+                </div>
+        </div>
+    </div>
+  </div>
+    }
+
+ </div>
+
+<app-buyer-make-offer-popup-component *ngIf="selectedProperty" [property]="selectedProperty" (close)="selectedProperty = null"></app-buyer-make-offer-popup-component>
+<app-update-user-profile-popup [isVisible]="isProfileVisible"></app-update-user-profile-popup>

@@ -1,0 +1,55 @@
+<section class="hero-banner">
+    <div class="overlay"></div>
+    <div class="wrapper-container">
+        <h1>Properties</h1>
+    </div>
+</section>
+
+<section class="section featured">
+    <div class="wrapper-container">
+
+        <div class="section-title">
+            <h2>Our Properties</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                 Dolorem doloremque animi quas! Dolor, accusamus modi!</p>
+        </div>
+
+        <div class="container-box">
+
+            @if (isLoading && properties.length == 0) {
+                <div class="loading">
+                    <div class="loader"></div>
+                </div>
+            }@else {
+                  <div class="listed-properties recom">
+       <div class="box card" *ngFor="let item of properties.slice(0, 6)">
+        <div class="box-img"> 
+            <img [src]="`${getImageUrl(item?.imageUrl)}`" alt={{item?.title}} class="img-box">
+
+              <div class="agent-details">
+                    <div class="box-img"><img [src]="`${getImageUrl(item?.agentImageUrl)}`" alt="" class="img-box"></div>
+                </div>
+        </div>
+        <div class="text-box">
+            <h3>{{item.title}}</h3>
+            <h2>{{item.price | currency: "R"}}</h2>
+            <p>{{item.address}}</p>
+             <ul>
+                    <li><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</li>
+                    <li><i class="fa-solid fa-sink"></i>{{item.bathrooms}}</li>
+                    <li><i class="fa-solid fa-ruler-combined"></i>{{item.size}}(m<sup>2</sup>)</li>
+                    <li><i class="fa-solid fa-eye"></i>407</li>
+                </ul>
+
+                <div class="buttons">
+                        <button class="btn view-all">View Details <i class="fa-solid fa-eye"></i></button>
+                        <button class="btn" routerLink="/login">Buy Now<i class="fa-solid fa-money-bill-wave"></i></button>
+                </div>
+        </div>
+    </div>
+  </div>
+            }
+        </div>
+    </div>
+</section>
+

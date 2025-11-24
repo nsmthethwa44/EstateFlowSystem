@@ -1,0 +1,173 @@
+<div class="buyer-dashboard flex">
+    <div class="text" *ngIf="loggedInUser | async as user;">
+        <h3>Welcome back 👋, <span>{{user?.name || "System User"}}</span></h3>
+       <ul class="info">
+        <li>Email: <span>{{user?.email || "User Email"}}</span></li>
+        <li>Role: <span>{{user?.role || "User Role"}}</span></li>
+       </ul>
+    </div>
+
+     <div class="msg-profile">
+        <span *ngIf="!authSer.isProfileComplete">Your profile is not complete. <a  (click)="toggleProfilePopup()">Update Profile</a></span>
+    </div>
+
+</div>
+
+
+  <!-- Stats Cards -->
+   <div class="stats">
+    <div class="box card">
+        <div class="text">
+           <h3>Approved Deals</h3>
+            <h2>{{ approvedDeals }}</h2>
+        </div>
+        <div class="icon">
+           <i class="fa-solid fa-circle-check"></i>
+        </div>
+    </div>
+     <div class="box card">
+        <div class="text">
+            <h3>Saved Properties</h3>
+            <h2>{{ savedProperties }}</h2>
+        </div>
+        <div class="icon">
+          <i class="fa-solid fa-floppy-disk"></i>
+        </div>
+    </div>
+     <div class="box card">
+        <div class="text">
+           <h3>Offers Made</h3>
+            <h2>{{ summary.offersMade || 0 }}</h2>
+        </div>
+        <div class="icon">
+           <i class="fa-solid fa-money-bill-wave"></i>
+        </div>
+    </div>
+     <div class="box card">
+        <div class="text">
+            <h3>Visits Scheduled</h3>
+            <h2>{{ visitsScheduled }}</h2>
+        </div>
+        <div class="icon">
+          <i class="fa-solid fa-house-chimney-crack"></i>
+        </div>
+    </div>
+</div>
+
+  <!-- Recommended Properties -->
+  <div class="listed-properties recom">
+       <div class="box card" *ngFor="let item of properties.slice(0, 4)">
+        <div class="box-img"> 
+            <img [src]="`${getImageUrl(item?.imageUrl)}`" alt={{item?.title}} class="img-box">
+
+              <div class="agent-details">
+                    <div class="box-img"><img [src]="`${getImageUrl(item?.agentImageUrl)}`" alt="" class="img-box"></div>
+                </div>
+        </div>
+        <div class="text-box">
+            <h3>{{item.title}}</h3>
+            <h2>{{item.price | currency: "R"}}</h2>
+            <p>{{item.address}}</p>
+             <ul>
+                    <li><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</li>
+                    <li><i class="fa-solid fa-sink"></i>{{item.bathrooms}}</li>
+                    <li><i class="fa-solid fa-ruler-combined"></i>{{item.size}}(m<sup>2</sup>)</li>
+                    <li><i class="fa-solid fa-eye"></i>407</li>
+                </ul>
+
+                <div class="buttons">
+                        <button class="btn view-all">View Details <i class="fa-solid fa-eye"></i></button>
+                        <button class="btn" (click)="openOfferPopup(item)">Buy Now<i class="fa-solid fa-money-bill-wave"></i></button>
+                </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="section-card-activity">
+      <div class="activity-notification-wrapper">
+                <div class="card section-card activity-card">
+                    <h3>Recent Activity</h3>
+                    <ul class="activity-list">
+                    <li><span class="dot success"></span>Lorem ipsum dolor sit amet.<small>2 hours ago</small></li>
+                    <li><span class="dot warning"></span>Lorem ipsum, dolor sit amet consectetur adipisicing.<small>5 hours ago</small> </li>
+                    <li> <span class="dot primary"></span>Lorem ipsum dolor sit.<small>1 day ago</small></li>
+                    </ul>
+                </div>
+
+                <div class="card section-card notif-card">
+                    <h3>Notifications</h3>
+                    <ul class="notif-list">
+                    <li><span class="badge success">Success</span>Your listing was approved.<small>Just now</small></li>
+                    <li><span class="badge danger">Alert</span>Verification document required.<small>1 hour ago</small></li>
+                    <li><span class="badge primary">Info</span>New message from buyer.<small>Yesterday</small></li>
+                    </ul>
+                </div>
+            </div>
+  </div>
+
+
+  <!-- recent offers made  -->
+  <div class="buyer-made-offers card">
+    <div class="title flex">
+        <h3>Recent Offers</h3>
+        <a routerLink="my-offers" routerLinkActive="router-link-active"  class="view-all">View All</a>
+    </div>
+    @if(offers.length === 0){
+        <p>You have no offers</p>
+    }@else {
+    <div class="table-container">
+        <div class="table-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Address</th>
+                        <th>Bathrooms</th>
+                        <th>Bedrooms</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of offers.slice(0, 4)">
+                        <td>
+                            <div class="text">
+                                <div class="box-img"><img [src]='`${getImageUrl(item.imageUrl)}`' alt={{item.title}} class="img-box"></div>
+                                <div class="info">
+                                    <p>{{item.title}}</p>
+                                    <span>{{item.price | currency: "R"}}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{item.address}}</td>
+                        <td><span class="amn"><i class="fa-solid fa-sink"></i>{{item.bathrooms}}</span></td>
+                        <td><span  class="amn"><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</span></td>
+                        <td><span class="amn"><i class="fa-solid fa-ruler-combined"></i>{{item.size}}</span></td>
+                        <td>{{item.amount | currency: "R"}}</td>
+                            @if(item.status === "Pending"){
+                                <td><span class="status" style="background: #f59e0b; color: #fff;">{{item.status}}</span></td>
+                            }
+                        <td>{{item.createdAt | date}}</td>
+                        <td>
+                            <div class="buttons">
+                                <i class="fa-solid fa-eye"></i>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    }
+
+  </div>
+
+  
+<app-update-user-profile-popup [isVisible]="isProfileVisible"></app-update-user-profile-popup>
+<app-buyer-make-offer-popup-component *ngIf="selectedProperty" [property]="selectedProperty" (close)="selectedProperty = null"></app-buyer-make-offer-popup-component>

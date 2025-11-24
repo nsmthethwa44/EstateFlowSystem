@@ -1,0 +1,66 @@
+<div class="page-title">
+    <div class="text">
+        <h3>User Management</h3>
+    </div>
+
+    <div class="date">
+        <span class="">12 March 2025</span>
+    </div>
+</div>
+
+<div class="search-title-filter">
+    <div class="title flex">
+         <div class="search">
+        <input type="text" class="textBox view-all" placeholder="Search...">
+    </div>
+
+          <div class="filter">
+        <select name="" id="" class="view-all">
+            <option value="">--Bulk Action--</option>
+            <option value="">Admin</option>
+            <option value="">Agents</option>
+            <option value="">Buyers</option>
+        </select>
+        <div class="filter-icon view-all"><i class="fa-solid fa-filter"></i><p>Filter</p></div>
+         <select name="" id="" class="view-all">
+            <option value="">--Select Role--</option>
+            <option value="">Admin</option>
+            <option value="">Agents</option>
+            <option value="">Buyers</option>
+        </select>
+    </div>
+    </div>
+</div>
+
+<!-- user management  -->
+<div class="user-management">
+    @if (isLoading && users.length == 0) {
+               <div class="loading">
+                    <div class="loader"></div>
+                </div>
+    }@else {
+ <div class="box card" *ngFor="let item of users">
+        <div class="text-box">
+            <div class="text">
+                <div class="info">
+                    <div class="box-img"><img [src]="`${getImageUrl(item.imageUrl)}`" alt="" class="img-box"></div>
+                    <div class="details">
+                        <h3>{{item.name}}</h3>
+                        <p>{{item.role}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="more"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul>
+            <li><i class="fa-solid fa-phone"></i>012 343 4546</li>
+            <li><i class="fa-solid fa-envelope"></i>example&commat;gmail.com</li>
+            <li><i class="fa-solid fa-file"></i>Lorem, ipsum.</li>
+        </ul>
+   </div>
+    }
+  
+</div>

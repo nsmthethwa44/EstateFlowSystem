@@ -1,0 +1,29 @@
+<header class="nav-header">
+    <div class="wrapper-container flex">
+
+        <div class="logo">
+            <h2><span>EF</span>EstateFlow</h2>
+        </div>
+
+        <div class="navbar" [class.active]="isNavBarOpen">
+            <ul class="nav-list">
+                <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNavbar()">Home</a></li>
+                <li><a routerLink="/blog" routerLinkActive="active" (click)="closeNavbar()">About</a></li>
+                <li><a routerLink="/houses" routerLinkActive="active" (click)="closeNavbar()">Properties</a></li>
+                <li><a routerLink="/blog" routerLinkActive="active" href="/blog" (click)="closeNavbar()">Blog</a></li>
+                <li><a routerLink="/houses" routerLinkActive="active" href="" (click)="closeNavbar()">Contact Us</a></li>
+            </ul>
+
+            <div class="close-box" (click)="closeNavbar()">
+                <i class="fa-solid fa-xmark"></i>
+                </div>
+        </div>
+
+        <div class="phone">
+            <h2><i class="fa-solid fa-phone"></i>012 345 6789</h2>
+        </div>
+
+        <div class="menu-box" (click)="toggleNavBar()"><i class="fa-solid fa-bars"></i></div>
+
+    </div>
+</header>

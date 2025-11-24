@@ -1,0 +1,33 @@
+<section class="hero-banner">
+    <div class="overlay"></div>
+    <div class="wrapper-container">
+        <h1>Blog</h1>
+    </div>
+</section>
+
+<section class="section blog">
+    <div class="wrapper-container">
+
+         <div class="section-title">
+            <h2>Latest News</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                 Dolorem doloremque animi quas! Dolor, accusamus modi!</p>
+        </div>
+
+        <div class="container-box">
+            <div class="box card" *ngFor="let item of blog">
+                <div class="box-img">
+                    <img src={{item}} alt="" class="img-box">
+                </div>
+                <div class="text-box">
+                    <span>Real Estate</span>
+                    <h3>Lorem ipsum dolor sit.</h3>
+                    <div class="date-comments">
+                        <p><i class="fa-regular fa-calendar-days"></i>23 April 2024</p>
+                        <p><i class="fa-solid fa-comment"></i>67</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

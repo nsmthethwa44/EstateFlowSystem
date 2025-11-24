@@ -1,0 +1,79 @@
+<div class="page-title">
+    <div class="text">
+        <h3>Offer Management</h3>
+    </div>
+
+    <div class="date">
+        <span class="">12 March 2025</span>
+    </div>
+</div>
+
+<!-- offers  -->
+   <div class="buyer-made-offers">
+    @if(isLoading){
+        <div class="loading">
+            <div class="loader"></div>
+        </div>
+    }@else if (offers.length == 0) {
+        <p>No offers made yet</p>
+    }@else {
+         <div class="table-container">
+        <div class="table-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Address</th>
+                        <th>Bathrooms</th>
+                        <th>Bedrooms</th>
+                        <th>Size</th>
+                        <th>Buyer</th>
+                        <th>Offer Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of offers">
+                        <td>
+                            <div class="text">
+                                <div class="box-img"><img [src]='`${getImageUrl(item.imageUrl)}`' alt={{item.title}} class="img-box"></div>
+                                <div class="info">
+                                    <p>{{item.title}}</p>
+                                    <span>{{item.price | currency: "R"}}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{item.address}}</td>
+                        <td><span class="amn"><i class="fa-solid fa-sink"></i>{{item.bathrooms}}</span></td>
+                        <td><span  class="amn"><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</span></td>
+                        <td><span class="amn"><i class="fa-solid fa-ruler-combined"></i>{{item.size}}</span></td>
+                        <td>
+                            <div class="text">
+                                <div class="box-img"><img [src]='`${getImageUrl(item.buyerImageUrl)}`' alt={{item.title}} class="img-box"></div>
+                                <div class="info">
+                                    <p>{{item.name}}</p>
+                                    <p>{{item.email}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="offer-price">{{item.amount | currency: "R"}}</span></td>
+                            @if(item.status === "Pending"){
+                                <td><span class="status" style="background: #f59e0b; color: #fff;">{{item.status}}</span></td>
+                            }
+                        <td>{{item.createdAt | date}}</td>
+                        <td>
+                            <div class="buttons">
+                                <i class="fa-solid fa-eye"></i>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash-can" (click)="deleteOffer(item.id)"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    }
+  </div>

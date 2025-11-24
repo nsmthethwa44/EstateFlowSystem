@@ -1,0 +1,81 @@
+<div class="stats">
+    <div class="box card" *ngFor="let item of statistics">
+        <div class="text">
+            <h3>{{item.name}}</h3>
+            <h2>{{item.value}}</h2>
+        </div>
+        <div class="icon">
+            <i class={{item.icon}}></i>
+        </div>
+    </div>
+</div>
+
+<div class="property-charts">
+    <div class="charts">
+        <div class="box card">
+            <h3 class="heading">Stats Chart</h3>
+            <div class="chart">
+                <ngx-charts-bar-vertical
+                [view]="view"
+                [results]="statistics"
+                [scheme]="colorScheme"
+                [gradient]="false"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="false"
+                [showDataLabel]="true"
+                [animations]="true">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+
+        <div class="box">
+           <div class="activity-notification-wrapper">
+                <div class="card section-card activity-card">
+                    <h3>Recent Activity</h3>
+                    <ul class="activity-list">
+                    <li><span class="dot success"></span>Lorem ipsum dolor sit amet.<small>2 hours ago</small></li>
+                    <li><span class="dot warning"></span>Lorem ipsum, dolor sit amet consectetur adipisicing.<small>5 hours ago</small> </li>
+                    <li> <span class="dot primary"></span>Lorem ipsum dolor sit.<small>1 day ago</small></li>
+                    </ul>
+                </div>
+
+                <div class="card section-card notif-card">
+                    <h3>Notifications</h3>
+                    <ul class="notif-list">
+                    <li><span class="badge success">Success</span>Your listing was approved.<small>Just now</small></li>
+                    <li><span class="badge danger">Alert</span>Verification document required.<small>1 hour ago</small></li>
+                    <li><span class="badge primary">Info</span>New message from buyer.<small>Yesterday</small></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card properties">
+        <h3 class="heading">New Properties <a routerLink="properties" routerLinkActive="router-link-active"  class="view-all">View All</a></h3>
+        <div class="property-box">
+            @if (isLoading && properties.length == 0) {
+                <div class="loading">
+                    <div class="loader"></div>
+                </div>
+            }@else {
+                <div class="box card" *ngFor="let item of properties.slice(0, 4)">
+                        <div class="box-img"><img [src]="`${getImageUrl(item?.imageUrl)}`" alt={{item?.title}} class="img-box"></div>
+                        <div class="text-box">
+                            <div class="text">
+                                <h3>{{item.title}}</h3>
+                            <p><i class="fa-solid fa-location-dot"></i>{{item.address}}</p>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</li>
+                                <li><i class="fa-solid fa-bath"></i>{{item.bathrooms}}</li>
+                                <li><i class="fa-solid fa-ruler-combined"></i>178m<sup>2</sup></li>
+                                <li><i class="fa-solid fa-eye"></i>381</li>
+                            </ul>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>
+</div>

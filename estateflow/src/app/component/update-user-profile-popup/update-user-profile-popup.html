@@ -1,0 +1,21 @@
+<div class="popup-overlay" *ngIf="isVisible">
+  <div class="popup-content">
+    <h3><i class="fa-solid fa-user"></i>Update Profile</h3>
+
+    <div class="divider"></div>
+
+    <div class="preview-img"><img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" class="img-box" /></div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="form">
+        <label>Phone Number <input type="text" formControlName="phoneNumber" class="textBox" placeholder="Phone"/></label>
+        <label>Office Address<input type="text" formControlName="officeAddress" class="textBox" placeholder="Address"/></label>
+        <label>Profile Image <input type="file" (change)="onFileSelected($event)" class="textBox"/></label>
+
+      <div class="buttons">
+        <button type="submit" [disabled]="form.invalid" class="btn">Update<i class="fa-solid fa-pen-to-square"></i></button>
+      </div>
+
+        <button type="button" class="view-all cancel" (click)="close()"><i class="fa-solid fa-xmark"></i></button>
+    </form>
+  </div>
+</div>

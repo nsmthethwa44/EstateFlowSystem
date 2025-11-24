@@ -1,0 +1,39 @@
+<div class="overlay modal-overlay">
+<div class="modal">
+<div class="modal-content form-wrapper">
+  
+    <div class="modal-header">
+    <h3><i class="fa-solid fa-sack-dollar"></i>Make an Offer</h3>
+    <button class="close-btn" (click)="close.emit()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="property-info">
+   <div class="box-img"> <img [src]="`${getImageUrl(property.imageUrl)}`"  class="img-box"/></div>
+    <div class="text">
+      <h3>{{ property.title }}</h3>
+      <p class="price">Price: {{ property.price | currency: "R"}}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="offerForm" class="form">
+    <label>Offer Amount<input type="number" formControlName="amount" class="textBox" placeholder="Enter your offer" /></label> 
+
+    <div class="error" *ngIf="amount?.touched && amount?.invalid">
+      <span *ngIf="amount?.errors?.['required']">Amount is required.</span>
+      <span *ngIf="amount?.errors?.['min']">Amount must be greater than 0.</span>
+    </div>
+
+        <div class="buttons">
+        <button class="submit-btn btn" [disabled]="offerForm.invalid" (click)="submitOffer()">
+            Make Offer<i class="fa-solid fa-money-bill-wave"></i>
+        </button>
+    </div>
+  </form>
+</div>
+
+</div>
+</div>
+
+

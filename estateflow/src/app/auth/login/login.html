@@ -1,0 +1,42 @@
+<div class="login-register">
+    <div class="container">
+        <div class="content">
+        <form [formGroup]="loginForm" class="form card" (submit)="onSubmit()">
+            <div class="logo">
+                <a href="">
+                    <span>EF</span>
+                    <h2>Estate Flow</h2>
+                </a>
+            </div>
+
+            <h3>Welcome back</h3>
+        
+            <div class="inputs">
+                <label for="email">Email
+                    <input type="email" formControlName="email" class="textBox" placeholder="Enter your email" autocomplete="username">
+                    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                        <small class="error">Email is required and must be valid.</small>
+                    </div>
+                </label>
+
+                 <label for="password">Password
+                    <input type="password" class="textBox"  formControlName="password" placeholder="Enter your password" autocomplete="current-password">
+               <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    <small class="error">Password is required (min 5 chars).</small>
+                </div>
+                </label>
+
+               <span> <a href="">Forgot Password</a></span>
+
+               <div class="buttons">
+                <button type="submit" class="btn">Login<i class="fa-solid fa-right-to-bracket"></i></button>
+               </div>
+
+               <p>Not Registered? <a routerLink="/register">SignUp</a></p>
+            </div>
+        </form>
+        </div>
+        
+    </div>
+    <app-copyright></app-copyright>
+</div>

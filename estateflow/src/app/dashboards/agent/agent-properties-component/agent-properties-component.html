@@ -1,0 +1,92 @@
+<div class="properties">
+  <div class="agent-dashboard">
+    <div class="text">
+        <h3>My Properties</h3>
+       <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <div class="msg-profile">
+        <span *ngIf="!authSer.isProfileComplete">Your profile is not complete. <a (click)="toggleProfileVisible()">Update Profile</a></span>
+        <div class="buttons">
+            <button class="btn" (click)="toggleShowModal()" [disabled]="!authSer.isProfileComplete"><i class="fa-solid fa-plus"></i> Add Property</button>
+        </div>
+    </div>
+</div>
+
+    <div class="property-content">
+     <!-- search filter    -->
+<div class="search-title-filter">
+    <div class="title flex">
+         <div class="search">
+        <input type="text" class="textBox view-all" placeholder="Search...">
+    </div>
+
+          <div class="filter">
+        <select name="" id="" class="view-all">
+            <option value="">--Bulk Action--</option>
+            <option value="">Admin</option>
+            <option value="">Agents</option>
+            <option value="">Buyers</option>
+        </select>
+        <div class="filter-icon view-all"><i class="fa-solid fa-filter"></i><p>Filter</p></div>
+         <select name="" id="" class="view-all">
+            <option value="">--Select Role--</option>
+            <option value="">Admin</option>
+            <option value="">Agents</option>
+            <option value="">Buyers</option>
+        </select>
+    </div>
+    </div>
+</div>
+
+        <div class="container-box">
+            @if(isLoading){
+                <div class="loading">
+                    <div class="loader"></div>
+                </div>
+            }@else if(properties.length == 0){
+                <p class="no-property">You have no properties listed yet.</p>
+            }@else {
+                <div class="property-listing">
+                    <div class="box card" *ngFor="let item of properties">
+                        <div class="text">
+                            <div class="box-img">
+                                <img [src]="`${getImageUrl(item?.imageUrl)}`" alt={{item?.title}} class="img-box">
+                                @if (item.status == "Pending") {
+                                         <span class="status" style="color: orange;"><span class="dot" style="background-color: orange;"></span>{{item.status}}</span>
+                                }@else if (item.status == "Approved") {
+                                         <span class="status" style="color: green;"><span class="dot" style="background-color: green;"></span>{{item.status}}</span>
+                                }
+                            </div>
+                            <div class="text-box">
+                                <div class="info">
+                                    <h3>{{item.title}}</h3>
+                                    <p><i class="fa-solid fa-location-dot"></i>{{item.address}}</p>
+
+                                    <ul>
+                                        <li><i class="fa-solid fa-bed"></i>{{item.bedrooms}}</li>
+                                        <li><i class="fa-solid fa-sink"></i>{{item.bathrooms}}</li>
+                                        <li><i class="fa-solid fa-ruler-combined"></i>{{item.size}}(m<sup>2</sup>)</li>
+                                        <li><i class="fa-solid fa-eye"></i>0</li>
+                                        <li><i class="fa-solid fa-calendar-days"></i>{{item.createdAt | date}}</li>
+                                    </ul>
+                                </div>
+                                <div class="controls-price">
+                                    <h3>{{item.price | currency: "R"}}</h3>
+                                    <div class="controls">
+                                        <i class="fa-solid fa-eye"></i>
+                                        <i class="fa-solid fa-pen"></i>
+                                        <i class="fa-solid fa-trash-can" (click)="deleteProperty(item.id)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<app-update-user-profile-popup [isVisible]="isProfileVisible"></app-update-user-profile-popup>
+<app-agent-add-property-component [isVisible]="showModal"></app-agent-add-property-component>

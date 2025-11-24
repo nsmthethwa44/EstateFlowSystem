@@ -1,0 +1,36 @@
+<div class="sidebar">
+    <div class="content">
+        <div class="logo"><h2><span>EF</span>Estate Flow</h2><div class="close" (click)="closeSidebar()"><i class="fa-solid fa-angle-left"></i></div></div>
+
+        <div class="navbar">
+           <ul class="nav">
+            <li *ngFor="let link of links">
+            <a [routerLink]="link.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="closeSidebar()">
+                <i [ngClass]="link.icon"></i>{{ link.label }}
+            </a>
+            </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="user">
+        <div class="user-box">
+             <div class="info" *ngIf="loggedInUser | async as user;">
+            <div class="box-img"><img [src]="`${getImageUrl(user.imageUrl)}`" alt="" class="img-box"></div>
+            <div class="text">
+                <h3>{{user?.name}}</h3>
+                <span>{{user?.role}}</span>
+            </div>
+        </div>
+        <div class="more"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        </div>
+
+        <div class="divider"></div>
+
+         <div class="buttons logOut">
+             <a href="#" (click)="logOut()"><i class="fa-solid fa-arrow-right-to-bracket"></i>LogOut</a>
+        </div>
+    </div>
+</div>

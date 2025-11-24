@@ -1,0 +1,120 @@
+<!-- Overlay -->
+<div class="modal-overlay" *ngIf="isVisible" (click)="closeModal()">
+    <div class="modal" *ngIf="isVisible">
+  <div class="modal-content card" (click)="$event.stopPropagation()">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h3>Add New Property</h3>
+      <button class="close-btn" (click)="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Step Indicator -->
+    <!-- <div class="step-indicator">
+      <div class="step" [class.active]="currentStep === 1">1. Basic Info</div>
+      <div class="step" [class.active]="currentStep === 2">2. Details</div>
+      <div class="step" [class.active]="currentStep === 3">3. Images</div>
+    </div> -->
+
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="(currentStep / 3) * 100"></div>
+    </div>
+
+    <form class="form" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+
+      <!-- STEP 1 -->
+      <div *ngIf="currentStep === 1" class="step-content">
+        <h3>Basic Information</h3>
+        <div class="divider"></div>
+
+        <label>Title
+          <input type="text" formControlName="title" class="textBox" placeholder="Enter title" />
+        </label>
+
+        <label>Description
+          <textarea formControlName="description" class="textBox" rows="3" placeholder="Short description"></textarea>
+        </label>
+
+        <label>Price
+          <input type="number" formControlName="price" class="textBox" placeholder="Enter price" />
+        </label>
+
+        <label>Address
+          <input type="text" formControlName="address" class="textBox" placeholder="Street address" />
+        </label>
+      </div>
+
+      <!-- STEP 2 -->
+      <div *ngIf="currentStep === 2" class="step-content">
+        <h3>Property Details</h3>
+        <div class="divider"></div>
+
+        <div class="row">
+          <label>City
+            <input type="text" formControlName="city" class="textBox" placeholder="City" />
+          </label>
+
+          <label>Province
+            <input type="text" formControlName="province" class="textBox" placeholder="Province" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Country
+            <input type="text" formControlName="country" class="textBox" placeholder="Country" />
+          </label>
+
+          <label>Size (m²)
+            <input type="number" formControlName="size" class="textBox" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Bedrooms
+            <input type="number" formControlName="bedrooms" class="textBox" />
+          </label>
+
+          <label>Bathrooms
+            <input type="number" formControlName="bathrooms" class="textBox" />
+          </label>
+        </div>
+
+      </div>
+
+      <!-- STEP 3 -->
+      <div *ngIf="currentStep === 3" class="step-content">
+        <h3>Images & Media</h3>
+        <div class="divider"></div>
+
+        <label>Upload Image
+          <input type="file" (change)="onFileSelected($event)" class="textBox" accept="image/*" />
+        </label>
+
+        <div class="preview" *ngIf="previewImage">
+          <img [src]="previewImage" alt="Preview">
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button type="button" class="btn secondary"
+                *ngIf="currentStep > 1"
+                (click)="prevStep()">Previous</button>
+
+        <button type="button" class="btn"
+                *ngIf="currentStep < 3"
+                (click)="nextStep()">Next</button>
+
+        <button type="submit" class="btn"
+                *ngIf="currentStep === 3">Submit Property</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+</div>
+
+<!-- Modal Container -->
+
