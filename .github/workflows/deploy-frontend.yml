@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: estateflow
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build Angular app
         working-directory: estateflow
