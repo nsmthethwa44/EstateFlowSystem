@@ -36,4 +36,4 @@ jobs:
           app-name: estateflow-frontend
           slot-name: Production
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
-          package: estateflow/dist/estateflow/browser
+          package: estateflow/dist/estateflow
