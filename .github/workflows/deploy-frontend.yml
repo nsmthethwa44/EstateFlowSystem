@@ -45,7 +45,7 @@ jobs:
       # ✅ Build Angular app for production
       - name: Build Angular App
         run: |
-          cd hcas
+          cd estateflow
           npm run build -- --configuration production
 
       # ✅ Deploy to Deploy to Azure App Service (skip Oryx build)
