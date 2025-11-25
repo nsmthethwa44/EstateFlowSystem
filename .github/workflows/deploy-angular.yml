@@ -1,0 +1,45 @@
+name: Deploy Angular Frontend to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3️⃣ Install Angular CLI
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      # 4️⃣ Install dependencies
+      - name: Install dependencies
+        working-directory: estateflow
+        run: npm install --legacy-peer-deps
+
+      # 5️⃣ Build Angular app
+      - name: Build Angular app
+        working-directory: estateflow
+        run: ng build --configuration production
+
+      # 6️⃣ Deploy to Azure
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'estateflowsystem' # Your App Service name
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
+          package: 'estateflow/dist/estateflow'
