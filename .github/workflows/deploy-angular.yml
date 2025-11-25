@@ -42,4 +42,4 @@ jobs:
           app-name: 'estateflowsystem' # Your App Service name
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
-          package: 'estateflow/dist/estateflow'
+          package: 'estateflow/dist/estateflow/browser'
