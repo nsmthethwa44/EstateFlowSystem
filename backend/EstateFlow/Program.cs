@@ -54,7 +54,7 @@ builder.Services.AddCors(options =>
         policy.AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials()
-              .WithOrigins("http://localhost:4200", "https://happy-ground-0a36d730f.3.azurestaticapps.net"));
+              .WithOrigins("http://localhost:4200", "https://estateflowsystem-gvaveyhdduhhezhx.canadacentral-01.azurewebsites.net"));
 });
 
 
