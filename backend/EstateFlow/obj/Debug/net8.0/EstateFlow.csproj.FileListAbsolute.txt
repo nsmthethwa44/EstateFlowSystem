@@ -185,3 +185,5 @@ C:\Users\user\Desktop\Programming\Web Design\Angular\Web Apps\Real Estate Manage
 C:\Users\user\Desktop\Programming\Web Design\Angular\Web Apps\Real Estate Management\backend\EstateFlow\obj\Debug\net8.0\EstateFlow.pdb
 C:\Users\user\Desktop\Programming\Web Design\Angular\Web Apps\Real Estate Management\backend\EstateFlow\obj\Debug\net8.0\EstateFlow.genruntimeconfig.cache
 C:\Users\user\Desktop\Programming\Web Design\Angular\Web Apps\Real Estate Management\backend\EstateFlow\obj\Debug\net8.0\ref\EstateFlow.dll
+C:\Users\user\Desktop\Programming\Web Design\Angular\Web Apps\Real Estate Management\backend\EstateFlow\obj\Debug\net8.0\EstateFlow.sourcelink.json
+C:\Users\user\Desktop\Programming\Web Design\Angular\Web Apps\Real Estate Management\backend\EstateFlow\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

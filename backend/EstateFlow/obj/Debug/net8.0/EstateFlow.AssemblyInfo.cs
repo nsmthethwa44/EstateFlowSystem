@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EstateFlow")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff3d65f7cfe266fc89d2997ccda8dbc7fb627554")]
 [assembly: System.Reflection.AssemblyProductAttribute("EstateFlow")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EstateFlow")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
