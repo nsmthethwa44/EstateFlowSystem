@@ -1,84 +1,82 @@
-# EstateFlow System
+EstateFlow – Real Estate Transaction Management System - (Angular, ASP.NET Core Web API, SQL Server)
 
-EstateFlow is a comprehensive real estate management platform that allows **admins**, **sellers**, and **buyers/investors** to manage properties, offers, and deals efficiently.  
+EstateFlow is a full-stack, role-based real estate transaction management platform that enables admins, sellers, and buyers/investors to manage property listings, offers, and deal lifecycles in a structured, transparent way.
 
----
+Project Overview:
+- EstateFlow models the entire real-world real estate deal flow, not just property listings.
+- The platform focuses on approval workflows, offer negotiation, deal tracking, and analytics-driven oversight to reflect how real transactions operate in production systems.
 
-## **Table of Contents**
+The goal was to build a production-grade system with clear responsibilities, strong data visibility, and maintainable architecture.
 
-- [Project Overview](#project-overview)  
-- [User Flows](#user-flows)  
-  - [Admin](#admin)  
-  - [Seller](#seller)  
-  - [Buyer](#buyer)  
-- [Features](#features)  
-- [Tech Stack](#tech-stack)  
-- [Setup & Deployment](#setup--deployment)  
-- [License](#license)  
+User Roles & Flows:
+- Admin: 
+	- Oversees the entire system
+	- Approves or rejects property listings
+	- Manages user lifecycle and roles
+	- Monitors KPIs, deal performance, and reports
 
----
+- Seller:
+	- Submits and manages property listings
+	- Reviews, accepts, rejects, or counters offers
+	- Tracks deal progress and completion
 
-## **Project Overview**
+- Buyer / Investor:
+	- Browses approved property listings
+	- Filters by location, price, availability, and profit margin
+	- Submits offers and tracks deal outcomes
 
-EstateFlow provides a streamlined workflow for real estate transactions:
+Features:
+- Role-based authentication and authorization
+- Approval-based property listing workflow
+- Offer lifecycle management (submit, counter, accept, reject)
+- Deal tracking with status transitions
+- Analytics dashboards with KPIs and charts
+- Notification triggers for approvals and offer updates
+- SPA routing with guarded routes
 
-- Admins can manage users, approve listings, and monitor analytics.  
-- Sellers can list properties, track offers, and manage deals.  
-- Buyers can browse profitable listings, make offers, and track completed deals.  
+Tech Stack:
+- Frontend:
+	- Angular 20
+	- SCSS (modular structure)
+	- ngx-charts
+	- RxJS
 
----
+- Backend:
+	- ASP.NET Core Web API
+	- Entity Framework Core
+	- LINQ
 
-## **User Flows**
+- Database:
+	- SQL Server / Azure SQL
+	- Architecture & Security
+	- JWT authentication
+	- Role-Based Access Control (RBAC)
+	- Service / Repository pattern
 
-### **Admin**
-1. **Login:** `/login` → redirects to `/admin/dashboard`.  
-2. **Dashboard:** View total listings, pending approvals, sales metrics, and graphs.  
-3. **Property Approval:** Approve or reject submitted listings, triggering notifications.  
-4. **User Management:** Deactivate, promote, or delete users.  
-5. **Analytics & Reports:** Track sales, flip volume, and profit margins.  
+- SOLID principles and clean code practices:
+	- Architecture & Design
+	- The system follows a clean layered architecture with strict separation of concerns:
+	- Controllers handle HTTP and routing logic
+	- Services contain business rules and workflows
+	- Repositories handle data access
+	- DTO-based API contracts enforce frontend–backend boundaries
 
-### **Seller**
-1. **Login/Register:** Complete profile and access `/seller/dashboard`.  
-2. **Add Property:** Submit listings; pending approval by Admin.  
-3. **Manage Listings:** Edit or remove properties before approval; track approved listings.  
-4. **Offers Received:** Accept, reject, or counter offers.  
-5. **Track Deals:** Monitor ongoing and completed deals.  
+This structure keeps the system maintainable, testable, and easy to extend.
 
-### **Buyer**
-1. **Login/Register:** Access `/buyer/dashboard`.  
-2. **Browse Listings:** Filter by location, price, profit margin, and availability.  
-3. **Property Details:** View property stats, images, and seller info.  
-4. **Make Offer:** Submit offers; track status (pending, accepted, rejected).  
-5. **Completed Deals:** Review purchase summaries of accepted offers.  
+Project Structure:
+- /backend   → ASP.NET Core Web API
+- /frontend  → Angular application
+- /db        → Database scripts / migrations
 
----
+Setup & Deployment:
+- Frontend Setup:
+	- cd estateflow
+	- npm install --legacy-peer-deps
+	- ng serve
 
-## **Features**
+Production Build:
+- ng build --configuration production
 
-- User authentication & role-based dashboards  
-- Property listing management  
-- Real-time offer tracking  
-- Analytics & reporting dashboards  
-- Email/notification triggers  
-- SPA routing support with Angular  
-
----
-
-## **Tech Stack**
-
-- **Frontend:** Angular 20  
-- **Backend/API:** ASP.NET Core Web API  
-- **Database:** SQL Server / Azure SQL  
-- **Hosting:** Azure App Service  
-- **CI/CD:** GitHub Actions  
-
----
-
-## **Setup & Deployment**
-
-### **Frontend**
-
-```bash
-cd estateflow
-npm install --legacy-peer-deps
-ng build --configuration production
+Links:
+- Live Demo: https://estateflowsystem.netlify.app/
+- GitHub Repository: This Repository
