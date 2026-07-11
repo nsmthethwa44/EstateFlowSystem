@@ -61,11 +61,10 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // use images 
+app.UseStaticFiles();
+
 var uploadsPath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "uploads");
-
-// Create the uploads folder if it doesn't exist
 Directory.CreateDirectory(uploadsPath);
-
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(uploadsPath),
